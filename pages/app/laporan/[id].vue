@@ -3,7 +3,7 @@ import type { Report } from '~/types/lapormas'
 definePageMeta({ layout: 'app', middleware: 'auth', title: 'Detail Laporan' })
 const route = useRoute()
 const { state, currentUser, deleteReport, verifyReport, takeReport, resolveReport, updateResolution, deleteResolution } = useLaporMas()
-const report = computed(() => state.value.reports.find(r => r.id === route.params.id) as Report | undefined)
+const report = computed<Report | undefined>(() => state.value.reports.find((r: Report) => r.id === route.params.id))
 const user = computed(() => currentUser.value!)
 const isOwner = computed(() => !!report.value && report.value.ownerId === user.value?.id)
 const isAdmin = computed(() => user.value?.role === 'admin')
@@ -14,7 +14,7 @@ const reviewNote = ref('')
 const editResolutionMode = ref(false)
 const showResolution = ref(false)
 const toast = ref('')
-watch(report, value => { resolutionText.value = value?.resolution?.summary || '' }, { immediate: true })
+watch(report, (value: Report | undefined) => { resolutionText.value = value?.resolution?.summary || '' }, { immediate: true })
 const formatDate = (value: string) => new Intl.DateTimeFormat('id-ID', { dateStyle: 'long', timeStyle: 'short' }).format(new Date(value))
 function verify(approved: boolean) { if (!report.value) return; if (verifyReport(report.value.id, approved, reviewNote.value)) { toast.value = approved ? 'Laporan berhasil diverifikasi.' : 'Laporan ditolak dan catatan dikirim ke pelapor.'; reviewNote.value = '' } }
 function take() { if (report.value && takeReport(report.value.id)) toast.value = 'Laporan masuk ke antrean penanganan Anda.' }

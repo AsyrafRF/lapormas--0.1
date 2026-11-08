@@ -1,10 +1,14 @@
 <script setup lang="ts">
+import type { Role } from '~/types/lapormas'
+
+const roleLabels: Record<Role, string> = { masyarakat: 'Masyarakat', petugas: 'Petugas Keamanan', admin: 'Administrator', rt: 'Ketua RT' }
+function getRoleName(role: Role): string { return roleLabels[role] }
 const { currentUser, unreadCount, logout } = useLaporMas()
 const route = useRoute()
 const menuOpen = ref(false)
 const user = computed(() => currentUser.value)
 const home = computed(() => user.value?.role === 'admin' ? '/admin' : user.value?.role === 'petugas' ? '/petugas' : user.value?.role === 'rt' ? '/rt' : '/app')
-const roleName = computed(() => user.value ? ({ masyarakat: 'Masyarakat', petugas: 'Petugas Keamanan', admin: 'Administrator', rt: 'Ketua RT' }[user.value.role]) : '')
+const roleName = computed(() => user.value ? getRoleName(user.value.role) : '')
 const navGroups = computed(() => {
   if (user.value?.role === 'admin') return [
     { label: 'WORKSPACE', items: [{ to: '/admin', icon: '⌂', label: 'Ringkasan' }, { to: '/app/laporan', icon: '▤', label: 'Semua laporan' }, { to: '/admin/pengguna', icon: '♙', label: 'Manajemen akun' }, { to: '/admin/rekap', icon: '▦', label: 'Rekapitulasi' }] },

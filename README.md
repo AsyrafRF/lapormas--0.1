@@ -21,6 +21,8 @@ npm run dev
 
 Buka `http://localhost:3000`.
 
+Pemeriksaan tipe: `npm run typecheck`.
+
 ## Akun demo
 
 | Role | Username | Password |
@@ -35,3 +37,8 @@ Buka `http://localhost:3000`.
 Ini **frontend prototype**, bukan sistem produksi. Tidak ada backend/database, autentikasi aman, upload file sebenarnya, atau push notification. Data simulasi disimpan lokal pada browser. Jangan gunakan data pribadi atau laporan sensitif yang sebenarnya.
 
 Dokumentasi lengkap tersedia di [`/docs`](./docs/README.md).
+
+
+## Catatan revisi
+
+Arsip revisi ini menyertakan perbaikan pemeriksaan tipe TypeScript, penamaan fungsi ekspor CSV agar tidak bentrok dengan auto-import Nuxt, dan middleware role. Jika sebelumnya sudah menjalankan versi lama, hentikan server dan jalankan ulang dari folder hasil ekstraksi arsip revisi ini.

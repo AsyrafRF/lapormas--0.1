@@ -13,7 +13,7 @@ export default defineNuxtPlugin(() => {
   } catch (error) {
     console.warn('Data demo LaporMas tidak dapat dibaca. Seed awal digunakan.', error)
   }
-  watch(state, value => {
+  watch(state, (value: StoreState) => {
     try { localStorage.setItem(STORAGE_KEY, JSON.stringify(value)) }
     catch (error) { console.warn('Penyimpanan lokal penuh atau tidak tersedia.', error) }
   }, { deep: true })

@@ -36,3 +36,16 @@ Untuk mengembalikan data awal, buka DevTools → Application/Storage → Local S
 ## Catatan jaringan
 
 Dependensi Nuxt harus diunduh saat `npm install`. Prototipe tidak memerlukan API eksternal atau database untuk dijalankan setelah dependensi tersedia.
+
+
+## Pemeriksaan tipe dan peringatan npm
+
+Setelah dependensi terpasang, jalankan pemeriksaan tipe dengan:
+
+```bash
+npm run typecheck
+```
+
+Jika terminal sebelumnya masih menampilkan error dari versi proyek lama, hentikan server (`Ctrl + C`), pastikan folder proyek berasal dari arsip revisi terbaru, lalu jalankan `npm install` dan `npm run dev` kembali. Jangan menyalin folder `.nuxt` atau `node_modules` dari instalasi lama ke arsip baru.
+
+Pesan `npm warn deprecated` dan laporan `npm audit` bukan error kompilasi aplikasi. Tinjau detailnya dengan `npm audit`; hindari menjalankan `npm audit fix --force` tanpa memeriksa perubahan versi mayor karena dapat mengubah kompatibilitas dependensi.

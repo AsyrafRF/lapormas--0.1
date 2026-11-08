@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import type { Priority } from '~/types/lapormas'
+import type { Priority, Report } from '~/types/lapormas'
 definePageMeta({ layout: 'app', middleware: 'auth', title: 'Formulir Laporan' })
 const { state, currentUser, createReport, updateReport } = useLaporMas()
 const route = useRoute()
 const editId = computed(() => String(route.query.edit || ''))
-const existing = computed(() => state.value.reports.find(r => r.id === editId.value))
+const existing = computed<Report | undefined>(() => state.value.reports.find((r: Report) => r.id === editId.value))
 const title = ref('')
 const category = ref('Keamanan lingkungan')
 const description = ref('')
@@ -17,7 +17,7 @@ const errorMessage = ref('')
 const saving = ref(false)
 const categories = ['Keamanan lingkungan', 'Ketertiban', 'Fasilitas umum', 'Kebersihan', 'Gangguan lingkungan', 'Lainnya']
 const priorities: Priority[] = ['Rendah', 'Sedang', 'Tinggi', 'Darurat']
-watch(existing, report => {
+watch(existing, (report: Report | undefined) => {
   if (report && report.ownerId === currentUser.value?.id) {
     title.value = report.title; category.value = report.category; description.value = report.description; location.value = report.location
     occurredAt.value = report.occurredAt.slice(0, 16); priority.value = report.priority; attachments.value = [...report.attachments]; selectedFiles.value = [...report.attachments]
@@ -31,7 +31,7 @@ function onFiles(event: Event) {
   attachments.value = [...new Set([...attachments.value, ...files.map(file => file.name)])].slice(0, 4)
   errorMessage.value = ''
 }
-function removeFile(name: string) { attachments.value = attachments.value.filter(item => item !== name); selectedFiles.value = selectedFiles.value.filter(item => item !== name) }
+function removeFile(name: string) { attachments.value = attachments.value.filter((item: string) => item !== name); selectedFiles.value = selectedFiles.value.filter((item: string) => item !== name) }
 function submit() {
   errorMessage.value = ''
   if (!title.value.trim() || !description.value.trim() || !location.value.trim() || !occurredAt.value) { errorMessage.value = 'Lengkapi semua informasi wajib sebelum mengirim.'; return }

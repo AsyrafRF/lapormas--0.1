@@ -1,18 +1,30 @@
+import type { Role } from '~/types/lapormas'
+
+function homeForRole(role: Role): string {
+  const homes: Record<Role, string> = {
+    masyarakat: '/app',
+    petugas: '/petugas',
+    admin: '/admin',
+    rt: '/rt'
+  }
+  return homes[role]
+}
+
 export default defineNuxtRouteMiddleware((to) => {
   const { currentUser } = useLaporMas()
   const user = currentUser.value
   if (!user) return navigateTo('/login')
 
   if (to.path === '/app/laporan/buat' && user.role !== 'masyarakat') {
-    const home = user.role === 'admin' ? '/admin' : user.role === 'petugas' ? '/petugas' : '/rt'
-    return navigateTo(home)
+    return navigateTo(homeForRole(user.role))
   }
 
-  const requiredRole = to.path.startsWith('/admin') ? 'admin'
+  const requiredRole: Role | null = to.path.startsWith('/admin') ? 'admin'
     : to.path.startsWith('/petugas') ? 'petugas'
       : to.path.startsWith('/rt') ? 'rt' : null
+
+  // Administrator boleh membuka seluruh workspace; peran lain dibatasi ke area masing-masing.
   if (requiredRole && user.role !== requiredRole && user.role !== 'admin') {
-    const home = user.role === 'admin' ? '/admin' : user.role === 'petugas' ? '/petugas' : user.role === 'rt' ? '/rt' : '/app'
-    return navigateTo(home)
+    return navigateTo(homeForRole(user.role))
   }
 })
