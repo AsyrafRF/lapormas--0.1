@@ -12,5 +12,6 @@ Dokumentasi prototipe frontend **LaporMas!**, portal aduan masyarakat untuk ling
 - [Rencana uji fungsional](./06-pengujian.md)
 - [Batasan prototipe dan langkah lanjutan](./07-batasan-roadmap.md)
 - [Catatan perbaikan TypeScript / typecheck](./08-perbaikan-typecheck.md)
+- [Atribusi proyek dan susunan tim TRPL1-005 Polibatam](./09-atribusi-tim.md)
 
 Kembali ke [README proyek](../README.md).

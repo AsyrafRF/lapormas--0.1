@@ -2,6 +2,15 @@
 
 Prototype frontend untuk portal pelayanan laporan masyarakat di lingkungan komplek perumahan, berdasarkan dokumen kebutuhan PBL LaporMas! 0.1.
 
+## Atribusi dan tim pengembang
+
+**LaporMas! 0.1 dikembangkan oleh Tim TRPL1-005 Polibatam — Politeknik Negeri Batam.**
+
+- **Team Leader:** 4342311014 — Bagus Sofan Barori
+- **Team Members:** 4342311021 — Muhammad Ilham Rouuf; 4342311022 — Oktario Dhamardjati Ramadhan; 4342311023 — Daniel Charlie Samuel Siburian; 4342311026 — Asyraf Rais Fadhil; 4342311027 — Azim Nimrot Simanjuntak
+
+Daftar lengkap dan format atribusi tersedia di [`docs/09-atribusi-tim.md`](./docs/09-atribusi-tim.md).
+
 ## Fitur utama
 
 - Landing page dan login dengan empat role: Masyarakat, Petugas Keamanan, Admin, Ketua RT.
