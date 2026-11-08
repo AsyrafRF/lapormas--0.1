@@ -42,3 +42,8 @@ Dokumentasi lengkap tersedia di [`/docs`](./docs/README.md).
 ## Catatan revisi
 
 Arsip revisi ini menyertakan perbaikan pemeriksaan tipe TypeScript, penamaan fungsi ekspor CSV agar tidak bentrok dengan auto-import Nuxt, dan middleware role. Jika sebelumnya sudah menjalankan versi lama, hentikan server dan jalankan ulang dari folder hasil ekstraksi arsip revisi ini.
+
+
+## Patch Typecheck Terbaru
+
+Perbaikan lanjutan untuk tiga error `TS7006` pada halaman admin dijelaskan di [docs/08-perbaikan-typecheck.md](./docs/08-perbaikan-typecheck.md).

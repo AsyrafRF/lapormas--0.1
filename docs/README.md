@@ -11,5 +11,6 @@ Dokumentasi prototipe frontend **LaporMas!**, portal aduan masyarakat untuk ling
 - [Panduan demo dan akun](./05-panduan-demo.md)
 - [Rencana uji fungsional](./06-pengujian.md)
 - [Batasan prototipe dan langkah lanjutan](./07-batasan-roadmap.md)
+- [Catatan perbaikan TypeScript / typecheck](./08-perbaikan-typecheck.md)
 
 Kembali ke [README proyek](../README.md).
