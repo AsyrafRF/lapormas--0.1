@@ -14,5 +14,7 @@
     "nuxt": "^3.17.5",
     "typescript": "^5.8.3",
     "vue-tsc": "^2.2.10"
-  }
+  },
+  "author": "Tim TRPL1-005 Polibatam",
+  "description": "LaporMas! 0.1 — Prototipe frontend portal pelayanan laporan masyarakat, dikembangkan oleh Tim TRPL1-005 Polibatam."
 }

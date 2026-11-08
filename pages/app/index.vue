@@ -1,13 +1,14 @@
 <script setup lang="ts">
+import type { Report } from '~/types/lapormas'
 definePageMeta({ layout: 'app', middleware: 'auth', title: 'Beranda' })
 const { state, currentUser } = useLaporMas()
 const user = computed(() => currentUser.value!)
 if (import.meta.client && user.value?.role !== 'masyarakat') await navigateTo(user.value?.role === 'admin' ? '/admin' : user.value?.role === 'petugas' ? '/petugas' : '/rt')
-const mine = computed(() => state.value.reports.filter(r => r.ownerId === user.value?.id))
-const publicReports = computed(() => state.value.reports.filter(r => ['Terverifikasi', 'Ditangani', 'Selesai'].includes(r.status)).slice(0, 3))
-const pending = computed(() => mine.value.filter(r => r.status === 'Menunggu verifikasi').length)
-const inProgress = computed(() => mine.value.filter(r => r.status === 'Ditangani' || r.status === 'Terverifikasi').length)
-const completed = computed(() => mine.value.filter(r => r.status === 'Selesai').length)
+const mine = computed<Report[]>(() => state.value.reports.filter((r: Report) => r.ownerId === user.value?.id))
+const publicReports = computed<Report[]>(() => state.value.reports.filter((r: Report) => ['Terverifikasi', 'Ditangani', 'Selesai'].includes(r.status)).slice(0, 3))
+const pending = computed(() => mine.value.filter((r: Report) => r.status === 'Menunggu verifikasi').length)
+const inProgress = computed(() => mine.value.filter((r: Report) => r.status === 'Ditangani' || r.status === 'Terverifikasi').length)
+const completed = computed(() => mine.value.filter((r: Report) => r.status === 'Selesai').length)
 const greeting = computed(() => { const h = new Date().getHours(); return h < 11 ? 'Selamat pagi' : h < 15 ? 'Selamat siang' : h < 18 ? 'Selamat sore' : 'Selamat malam' })
 </script>
 <template>

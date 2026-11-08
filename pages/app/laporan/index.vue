@@ -1,11 +1,12 @@
 <script setup lang="ts">
+import type { Report } from '~/types/lapormas'
 definePageMeta({ layout: 'app', middleware: 'auth', title: 'Daftar Laporan' })
 const { state, currentUser } = useLaporMas()
 const search = ref('')
 const statusFilter = ref('Semua status')
-const visibleReports = computed(() => {
+const visibleReports = computed<Report[]>(() => {
   const user = currentUser.value!
-  return state.value.reports.filter(report => {
+  return state.value.reports.filter((report: Report) => {
     if (user.role === 'masyarakat' && report.ownerId !== user.id) return false
     if ((user.role === 'rt' || user.role === 'petugas') && ['Menunggu verifikasi', 'Ditolak'].includes(report.status)) return false
     const q = search.value.toLowerCase()

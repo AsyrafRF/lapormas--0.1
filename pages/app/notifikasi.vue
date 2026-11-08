@@ -1,8 +1,9 @@
 <script setup lang="ts">
+import type { NotificationItem } from '~/types/lapormas'
 definePageMeta({ layout: 'app', middleware: 'auth', title: 'Notifikasi' })
 const { state, currentUser, markNotificationRead, markAllNotificationsRead } = useLaporMas()
-const notifications = computed(() => state.value.notifications.filter(n => n.userId === currentUser.value?.id).sort((a,b) => b.createdAt.localeCompare(a.createdAt)))
-const unread = computed(() => notifications.value.filter(n => !n.read).length)
+const notifications = computed<NotificationItem[]>(() => state.value.notifications.filter((n: NotificationItem) => n.userId === currentUser.value?.id).sort((a, b) => b.createdAt.localeCompare(a.createdAt)))
+const unread = computed(() => notifications.value.filter((n: NotificationItem) => !n.read).length)
 const format = (value: string) => new Intl.DateTimeFormat('id-ID', { dateStyle: 'medium', timeStyle: 'short' }).format(new Date(value))
 function open(item: typeof notifications.value[number]) { markNotificationRead(item.id); navigateTo(item.link) }
 </script>
